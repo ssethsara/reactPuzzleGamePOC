@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Motion, spring } from "react-motion";
-import { TILE_COUNT, GRID_SIZE, BOARD_SIZE } from "../../constants"
+import { TILE_COUNT, GRID_SIZE } from "../../constants"
 
 function Tile(props) {
-  const { tile, index, width, height, handleTileClick, imgUrl, rotationAngle } = props;
+  const { tile, index, width, height, handleTileClick, imgUrl, rotationAngle, boardSize, isSolved } = props;
 
-    // Get the row/col pair from a linear index.
- function getMatrixPosition(index) {
+  // Get the row/col pair from a linear index.
+  function getMatrixPosition(index) {
     return {
       row: Math.floor(index / GRID_SIZE),
       col: index % GRID_SIZE,
     };
   }
-  
-   function getVisualPosition(row, col, width, height) {
+
+  function getVisualPosition(row, col, width, height) {
     return {
       x: col * width,
       y: row * height,
@@ -29,9 +29,9 @@ function Tile(props) {
     translateX: visualPos.x,
     translateY: visualPos.y,
     backgroundImage: `url(${imgUrl})`,
-    backgroundSize: `${BOARD_SIZE}px`,
+    backgroundSize: `${boardSize}px`,
     backgroundPosition: `${(100 / (GRID_SIZE - 1)) * (tile % GRID_SIZE)}% ${(100 / (GRID_SIZE - 1)) * (Math.floor(tile / GRID_SIZE))}%`,
-
+    boxShadow: `inset 1px 1px 2px 2px rgba(0,0,0,0.3)`
   };
   const motionStyle = {
     translateX: spring(visualPos.x),
@@ -45,10 +45,12 @@ function Tile(props) {
   }, [rotationAngle])
 
   const Rotate = () => {
-    const newRotationAngle=rotate + 90;
-    SetRotate(newRotationAngle);
-    handleTileClick(index,newRotationAngle);
-    console.log((newRotationAngle) % 360);
+    if (!isSolved) {
+      const newRotationAngle = rotate + 90;
+      SetRotate(newRotationAngle);
+      handleTileClick(index, newRotationAngle);
+      console.log((newRotationAngle) % 360);
+    }
   }
 
   return (
@@ -58,6 +60,8 @@ function Tile(props) {
           style={{
             ...tileStyle,
             transform: `translate3d(${translateX}px, ${translateY}px, 0) rotate(${rotate}deg) `,
+            cursor: "pointer",
+            // border:"dotted 0.5px"
           }}
           className="tile"
           //    onClick={() => handleTileClick(index)}
