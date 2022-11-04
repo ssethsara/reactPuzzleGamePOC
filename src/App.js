@@ -4,6 +4,7 @@ import './styles/main.scss';
 import StartPage from "./pages/startPage";
 import RotatePuzzleGame from './pages/rotatePuzzleGamePage';
 
+
 function App() {
   return (
     <BrowserRouter>

@@ -1,0 +1,89 @@
+.button-wrapper {
+ // this css is purely to place the button squarely in the center of this demo, remove to place it wherever it might need to go in your actual code
+ position: absolute;
+ top: 85%;
+ left: 49.5%;
+ transform: translate(-50%, -50%);
+ -ms-transform: translate(-50%, -50%);
+ color: white;
+ font-size: 16px;
+ padding: 12px 12px;
+ border: none;
+ cursor: pointer;
+ border-radius: 50px;
+ text-align: center;
+ z-index: 100;
+}
+
+@keyframes TransitioningBackground {
+ 0% {
+  background-position: 1% 0%;
+ }
+ 50% {
+  background-position: 99% 100%;
+ }
+ 100% {
+  background-position: 1% 0%;
+ }
+}
+
+.subscribe-button {
+ border: none;
+ font-family: TrajanPro;
+ font-size: 1rem;
+ font-weight: 600;
+ color: white;
+ text-align: center;
+ width: 200px;
+ height: 60px;
+ border-radius: 50px;
+ // for shine & gradient effects to work
+ position: relative;
+ overflow: hidden;
+ // for background color shift
+ background-image: (linear-gradient(270deg, #b3912a, #ffbf00));
+ background-size: 400% 400%;
+ animation: TransitioningBackground 10s ease infinite;
+ // to ease the button growth on hover
+ transition: 0.6s;
+
+ // psuedo-element shine animation left side
+ &::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  width: 60px;
+  height: 100%;
+  top: 0;
+  filter: blur(30px);
+  transform: translateX(-100px) skewX(-15deg);
+ }
+
+ // psuedo-element shine animation right side
+ &::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  width: 30px;
+  height: 100%;
+  top: 0;
+  filter: blur(5px);
+  transform: translateX(-100px) skewX(-15deg);
+ }
+
+ // grow button and change background gradient on hover
+ &:hover {
+  background-image: (linear-gradient(to left, #fff458, #ff8c00));
+  transform: scale(1.2);
+  cursor: pointer;
+
+  // psuedo-elements for right- and left-side shine animations
+  &::before,
+  &::after {
+   transform: translateX(300px) skewX(-15deg);
+   transition: 0.7s;
+  }
+ }
+}

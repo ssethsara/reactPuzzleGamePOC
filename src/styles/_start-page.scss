@@ -15,7 +15,6 @@
   }
  }
 }
-
 .bg {
  background-color: black;
  width: 50%;
@@ -44,6 +43,55 @@
   height: 110% !important;
  }
 
+ .frontLayer-Animation {
+  animation-name: frontLayer-animation-keyframe;
+  animation-duration: 10s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+ }
+ .middleLayer-Animation {
+  animation-name: middleLayer-animation-keyframe;
+  animation-duration: 10s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+ }
+ .bgLayer-Animation {
+  animation-name: bgLayer-animation-keyframe;
+  animation-duration: 15s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+ }
+
+ @keyframes frontLayer-animation-keyframe {
+  from {
+   transform: scale(1);
+  }
+  to {
+   transform: scale(3);
+  }
+ }
+
+ @keyframes middleLayer-animation-keyframe {
+  from {
+   transform: scale(1);
+  }
+  to {
+   transform: scale(3);
+  }
+ }
+
+ @keyframes bgLayer-animation-keyframe {
+  from {
+   transform: scale(1);
+  }
+  to {
+   transform: scale(2);
+  }
+ }
+
  #scene .layer .image {
   position: absolute;
   top: 0;
@@ -51,22 +99,5 @@
   width: 120%;
   height: 100%;
   object-fit: cover;
- }
-
- .button {
-  position: absolute;
-  top: 85%;
-  left: 49.5%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #555;
-  color: white;
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-  z-index: 100;
  }
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Motion, spring } from "react-motion";
-import { TILE_COUNT, GRID_SIZE } from "../../constants"
+import { GRID_SIZE } from "../../constants"
 
 function Tile(props) {
-  const { tile, index, width, height, handleTileClick, imgUrl, rotationAngle, boardSize, isSolved } = props;
+  const { tile, index, width, height, handleTileClick, imgUrl, rotationAngle, boardSize, isSolved,isStarted } = props;
 
   // Get the row/col pair from a linear index.
   function getMatrixPosition(index) {
@@ -45,7 +45,7 @@ function Tile(props) {
   }, [rotationAngle])
 
   const Rotate = () => {
-    if (!isSolved) {
+    if (!isSolved && isStarted) {
       const newRotationAngle = rotate + 90;
       SetRotate(newRotationAngle);
       handleTileClick(index, newRotationAngle);
@@ -61,10 +61,8 @@ function Tile(props) {
             ...tileStyle,
             transform: `translate3d(${translateX}px, ${translateY}px, 0) rotate(${rotate}deg) `,
             cursor: "pointer",
-            // border:"dotted 0.5px"
           }}
           className="tile"
-          //    onClick={() => handleTileClick(index)}
           onClick={Rotate}
         >
           {!imgUrl && `${tile + 1}`}

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Tile from "./tile";
 import { TILE_COUNT, GRID_SIZE, BOARD_SIZE_DESKTOP, BOARD_SIZE_MOBILE } from "../../constants"
 import Modal from "./components/modal";
+import seedrandom from "seedrandom";
+
+var rng = seedrandom('Puzzle_1');
 
 const VALID_ANGLES = [0, 90, 180, 270];
 
 function Board({ imgUrl, isMobile }) {
-  // const [tiles, setTiles] = useState([...Array(TILE_COUNT).keys()]);
   const tiles = [...Array(TILE_COUNT).keys()];
   const [tilesData, setTilesData] = useState([]);
   const [isStarted, setIsStarted] = useState(false);
@@ -47,19 +49,23 @@ function Board({ imgUrl, isMobile }) {
 
   useEffect(() => {
     const interval = !isSolved && isStarted && setInterval(() => {
-      var time = timer;
       setTimer((prev) => prev + 1);
     }, 1000);
 
+    const freezeTimer = isSolved && isStarted && setTimeout(() => {
+      setIsModalOpen(true);
+    }, 2000);
+
     return () => {
       clearInterval(interval);
+      clearTimeout(freezeTimer);
     }
   }, [isSolved, isStarted])
 
   const setupTile = (suffled) => {
     const tileData = [];
     tiles.forEach((key, index) => {
-      const random = suffled ? Math.floor(Math.random() * (VALID_ANGLES.length - 1) + 1) : 0;
+      const random = suffled ? Math.floor(rng() * (VALID_ANGLES.length - 1) + 1) : 0;
       tileData.push({
         key: key,
         rotationAngle: VALID_ANGLES[random]
@@ -71,7 +77,6 @@ function Board({ imgUrl, isMobile }) {
 
   const handleTileClick = (index, newRotationAngle) => {
     if (!isSolved) {
-      //setTilesData(...tilesData,tilesData[index].rotationAngle=newRotationAngle)
       var newTilesData = [...tilesData];
       newTilesData[index].rotationAngle = newRotationAngle;
       setTilesData(newTilesData);
@@ -85,7 +90,7 @@ function Board({ imgUrl, isMobile }) {
     console.log("unsolved", unsolvedTiles);
     if (isStarted && unsolvedTiles?.length === 0) {
       setIsSolved(true)
-      setIsModalOpen(true);
+    
 
     } else { setIsSolved(false); }
   }
@@ -99,18 +104,16 @@ function Board({ imgUrl, isMobile }) {
     setIsModalOpen(false);
   }
 
-
   const pieceWidth = Math.round(boardSize / GRID_SIZE);
   const pieceHeight = Math.round(boardSize / GRID_SIZE);
   const style = {
     width: boardSize,
     height: boardSize,
   };
-  // const hasWon = isSolved(tiles)
 
   return (
     <>
-      {isModalOpen && <Modal text="You Won!" time={getTimerString()} onModalClosed={onModalClose} ></Modal>}
+      {isModalOpen && <Modal text="Puzzle Solved" time={getTimerString()} onModalClosed={onModalClose} ></Modal>}
       <div className="timerStyle">{getTimerString()}</div>
       <ul style={style} className="board">
         {tilesData.map((tile, index) => (
@@ -125,6 +128,7 @@ function Board({ imgUrl, isMobile }) {
             boardSize={boardSize}
             handleTileClick={handleTileClick}
             isSolved={isSolved}
+            isStarted={isStarted}
           />
         ))}
       </ul>

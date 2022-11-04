@@ -1,3 +1,15 @@
+@keyframes TransitioningModalBackground {
+ 0% {
+  background-position: 1% 0%;
+ }
+ 50% {
+  background-position: 99% 100%;
+ }
+ 100% {
+  background-position: 1% 0%;
+ }
+}
+
 /* The Modal (background) */
 .modal {
  display: flex; /* Hidden by default */
@@ -14,20 +26,30 @@
 
 /* Modal Content */
 .modal-content {
- background-color: #f5e795;
  margin: auto;
  padding: 20px;
  border: 1px solid rgb(0, 0, 0);
  height: fit-content;
- width: 20%;
+ width: 30%;
  color: #000;
  font-family: TrajanPro;
+ position: relative;
+ background-size: 400% 400%;
  box-shadow: inset 0px -2px 4px 2px;
+ background-image: (linear-gradient(270deg, #fad66c, #d37102));
+ animation: TransitioningModalBackground 10s ease infinite;
+ // to ease the button growth on hover
+ transition: 0.6s;
 
  @media screen and (max-width: 992px) {
   margin-top: 50%;
-  width: 80%;
+  width: 50%;
  }
+}
+
+.modal-items {
+ display: flex;
+ flex-direction: column;
 }
 
 /* The Close Button */
