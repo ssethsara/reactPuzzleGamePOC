@@ -36,6 +36,31 @@
   overflow: hidden;
  }
 
+ .shine-effect {
+  background-image: radial-gradient(
+   rgb(255, 255, 255),
+   rgb(255, 187, 0),
+   rgb(255, 244, 206)
+  );
+  opacity:0;
+  animation-name: shine-fade;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+
+ }
+
+ @keyframes shine-fade {
+  0% {
+   opacity: 0;
+  }
+  100% {
+   opacity: 0.9;
+  }
+ }
+
  .middleLayer {
   top: -5% !important;
   left: -5% !important;
@@ -43,7 +68,14 @@
   height: 110% !important;
  }
 
+ .frontLayer {
+  left: -5% !important;
+  width: 110% !important;
+ }
+
  .frontLayer-Animation {
+  left: -5% !important;
+  width: 110% !important;
   animation-name: frontLayer-animation-keyframe;
   animation-duration: 10s;
   animation-iteration-count: 1;
@@ -51,6 +83,11 @@
   animation-fill-mode: forwards;
  }
  .middleLayer-Animation {
+  top: -5% !important;
+  left: -5% !important;
+  width: 110% !important;
+  height: 110% !important;
+
   animation-name: middleLayer-animation-keyframe;
   animation-duration: 10s;
   animation-iteration-count: 1;

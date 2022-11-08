@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import Board from "../games/tile-rotation-puzzle/board";
 
 import LogoImage from '../assets/images/Konstskatten_logo.png'
+import PuzzleImage from '../assets/images/puzzle-image-1.jpg';
 import Modal from "../games/tile-rotation-puzzle/components/modal";
 
 function RotatePuzzleGame() {
-    const PUZZLE_IMAGE = "https://ascender-my.sharepoint.com/personal/supun_ascentic_se/Documents/GamePOCContent/puzzle-image-1.jpg"
+    const PUZZLE_IMAGE = PuzzleImage;
     const [width, setWidth] = useState(window.innerWidth);
 
     function handleWindowSizeChange() {

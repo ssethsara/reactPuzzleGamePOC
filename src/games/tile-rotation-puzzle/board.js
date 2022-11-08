@@ -115,7 +115,7 @@ function Board({ imgUrl, isMobile }) {
     <>
       {isModalOpen && <Modal text="Puzzle Solved" time={getTimerString()} onModalClosed={onModalClose} ></Modal>}
       <div className="timerStyle">{getTimerString()}</div>
-      <ul style={style} className="board">
+      <ul style={style} className={isStarted && isSolved ?"board board-shine-animation":"board"}>
         {tilesData.map((tile, index) => (
           <Tile
             key={tile.key}
