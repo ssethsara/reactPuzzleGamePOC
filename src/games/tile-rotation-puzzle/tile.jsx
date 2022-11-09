@@ -41,7 +41,6 @@ function Tile(props) {
 
   useEffect(() => {
     SetRotate(rotationAngle);
-    console.log("rotationAngle :" + rotationAngle)
   }, [rotationAngle])
 
   const Rotate = () => {

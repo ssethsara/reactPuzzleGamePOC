@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tile from "./tile";
 import { TILE_COUNT, GRID_SIZE, BOARD_SIZE_DESKTOP, BOARD_SIZE_MOBILE } from "../../constants"
-import Modal from "./components/modal";
+import Modal from "../components/modal";
 import seedrandom from "seedrandom";
 
 var rng = seedrandom('Puzzle_1');
@@ -87,7 +87,6 @@ function Board({ imgUrl, isMobile }) {
 
   const CheckIsSolved = (newTileData) => {
     const unsolvedTiles = newTileData.filter(t => t.rotationAngle % 360 !== 0);
-    console.log("unsolved", unsolvedTiles);
     if (isStarted && unsolvedTiles?.length === 0) {
       setIsSolved(true)
     
