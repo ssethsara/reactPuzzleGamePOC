@@ -30,7 +30,6 @@
   position: relative;
   padding: 0;
   border: solid 10px white;
-
   overflow: hidden;
  }
 
@@ -57,7 +56,6 @@
   animation-iteration-count: 1;
   animation-timing-function: ease;
   animation-fill-mode: forwards;
-
  }
 
  @keyframes shine-effect {
@@ -71,7 +69,6 @@
   }
  }
 
- /* Active state */
  .board:active:after {
   opacity: 0;
  }
@@ -79,10 +76,28 @@
  .tile {
   position: absolute;
   list-style: none;
-  background: #ec6f66;
+  background: #000000;
   display: grid;
   place-items: center;
   font-size: 20px;
+ }
+
+ .timerStyle {
+  font-family: TrajanPro;
+  font-size: 1.7rem;
+  width: 570px;
+  display: grid;
+  margin-bottom: 10px;
+  justify-content: end;
+
+  .timeText {
+   font-size: 1rem;
+   color: #f1c748;
+  }
+
+  @media screen and (max-width: 400px) {
+   width: 90%;
+  }
  }
 
  button {

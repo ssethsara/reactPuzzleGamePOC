@@ -1,5 +1,4 @@
 .button-wrapper {
- // this css is purely to place the button squarely in the center of this demo, remove to place it wherever it might need to go in your actual code
  position: absolute;
  top: 85%;
  left: 49.5%;
@@ -27,25 +26,29 @@
  }
 }
 
-.subscribe-button {
+.start-button {
  border: none;
- font-family: TrajanPro;
- font-size: 1rem;
- font-weight: 600;
- color: white;
+ font-family: TrajanBold;
+ font-size: 1.7rem;
+ font-weight: 900px;
+ color: rgb(56, 22, 0);
  text-align: center;
+ text-shadow: horizontal-shadow vertical-shadow blur color;
  width: 200px;
- height: 60px;
+ height: 50px;
  border-radius: 50px;
  // for shine & gradient effects to work
  position: relative;
  overflow: hidden;
  // for background color shift
- background-image: (linear-gradient(270deg, #b3912a, #ffbf00));
+ background-image: (linear-gradient(270deg, #f1c748, #ffbf00));
  background-size: 400% 400%;
  animation: TransitioningBackground 10s ease infinite;
  // to ease the button growth on hover
  transition: 0.6s;
+ box-shadow: 0 1px 10px rgb(0, 0, 0),
+  /*top external shadow*/ inset 0 -5px 5px rgba(0, 0, 0, 0.5),
+  /*bottom internal shadow*/ inset 0 5px 5px rgba(255, 255, 255, 0.8); /*top internal highlight*/
 
  // psuedo-element shine animation left side
  &::before {
